@@ -1,3 +1,5 @@
+[![BuyMeACoffee](https://raw.githubusercontent.com/pachadotdev/buymeacoffee-badges/main/bmc-yellow.svg)](https://www.buymeacoffee.com/azukoha302)
+
 ## [sekai.run](https://sekai.run/)
 
 This repository contains the main codebase for **Sekai Scoreboard**, excluding critical infrastructure and essential components.  
