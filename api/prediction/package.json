@@ -1,0 +1,6 @@
+{
+  "type": "module",
+  "dependencies": {
+    "minify": "^11.4.0"
+  }
+}

@@ -1,0 +1,363 @@
+html,
+body {
+    background: #000;
+}
+
+:root {
+    color-scheme: dark;
+}
+
+* {
+    font-family: 'M PLUS 1', 'SUIT Variable', sans-serif;
+}
+
+body {
+    overflow: initial !important;
+}
+
+a {
+    color: #fff;
+}
+
+img {
+    pointer-events: none;
+}
+
+::-webkit-scrollbar {
+    color-scheme: dark;
+    -webkit-appearance: none;
+}
+
+::-webkit-scrollbar:vertical {
+    width: 6px;
+}
+
+::-webkit-scrollbar:horizontal {
+    height: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    background-color: rgba(123, 123, 123, .5);
+}
+
+::-webkit-scrollbar-track { 
+    background-color: transparent;
+    border-radius: 0px;
+}
+
+::-webkit-scrollbar {
+    color-scheme: dark;
+    -webkit-appearance: none;
+}
+
+.modal-body::-webkit-scrollbar:vertical {
+    width: 11px;
+}
+
+.modal-body::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    border: 2px solid var(--bs-body-bg); 
+    background-color: rgba(123, 123, 123, .5);
+}
+
+.modal-body::-webkit-scrollbar-track { 
+    background-color: var(--bs-body-bg); 
+    border-radius: 0px;
+}
+
+.mono {
+    font-family: "Space Mono", "M PLUS 1 Code", "Nanum Gothic Coding", Consolas, monospace !important;
+    font-size: 10pt;
+}
+
+.nickname {
+    font-size: 10pt;
+}
+
+.mini {
+    font-size: 8pt;
+}
+
+#nickname {
+    max-width: 410px;
+    min-width: 300px;
+}
+
+#btnOptions {
+    min-width: 80px;
+}
+
+.header {
+    background: #111;
+    /* min-width: 1024px; */
+    top: 0;
+    border-bottom: 1px solid #333;
+    height: 100px;
+    padding: 10px 20px;
+    position: fixed;
+    color: white;
+    z-index: 10000 !important;
+    width: 100%;
+}
+
+.optionList {
+    display: flex;
+}
+
+.main {
+    width: 100%;
+    overflow-x: scroll !important;
+    display: inline;
+}
+
+.container-results {
+    display: flex;
+    margin: 110px 10px 10px 10px;
+    width: calc(100% - 20px);
+    padding: 0;
+}
+
+@media (max-width: 1200px) {
+    .header {
+        height: auto;
+    }
+    .infoList {
+        margin-top: 10px;
+    }
+} 
+
+@media (max-width: 900px) {
+    .container-results {
+        margin: 10px 10px 10px 10px;
+    }
+    .optionList {
+        display: block;
+    }
+    .header {
+        position: initial;
+    }
+    .main {
+        width: 100%;
+        display: grid;
+    }
+} 
+
+.help-image {
+    max-width: 500px;
+    width: 100%;
+    min-width: 200px;
+    border: 1px solid #ccc;
+    padding: 5px;
+    margin: 10px 5px;
+}
+
+.modal {
+    z-index: 20000;
+    pointer-events: none !important;
+}
+
+.modal-backdrop {
+    z-index: 10001 !important;
+}
+
+.profile-options {
+    display: inline-flex;
+}
+
+.deck-card {
+    min-width: 32px;
+    width: 100%;
+    max-width: 128px;
+    border-radius: 0.5em;
+}
+
+.deck-card-mini {
+    height: 40px;
+    border-radius: 0.1em;
+}
+
+.infoLinks {
+    padding-top: 5px;
+}
+
+.infoLinks > a {
+    text-decoration: underline !important;
+    cursor: pointer;
+}
+
+.infoLinks > a:hover {
+    color: #99eded !important;
+}
+
+.menuLinks > a {
+    text-decoration: underline !important;
+    cursor: pointer;
+}
+
+.menuLinks > a:hover {
+    color: #99eded !important;
+}
+
+#help_body a:hover {
+    color: #99eded !important;
+}
+
+.title-talent {
+    text-align:right;
+}
+
+.table-talent {
+    width: 100%;
+    float: right;
+    text-align: right;
+}
+
+.modal-header {
+    cursor: move;
+    background: #222 !important;
+}
+
+.modal-content {
+    container-type: inline-size;
+}
+
+.modal-content.ui-resizable {
+    overflow-y: scroll;
+}
+
+.textPredictionWarning {
+    max-width: 600px;
+}
+
+#optionLanguage {
+    max-width: 200px;
+    display: inline-block;
+}
+
+.resizer {
+    width: 12px;
+    height: 12px;
+    background: #888;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    cursor: nwse-resize;
+    border: 1px solid #666;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    opacity: 0.8;
+    transition: background 0.2s, opacity 0.2s;
+}
+
+.resizer:hover {
+    background: #555;
+    opacity: 1;
+}
+
+@media (max-width: 992px) {
+    .title-talent {
+        text-align:left;
+    }
+    
+    .table-talent {
+        width: auto;
+        float: left;
+        text-align: left;
+    }
+
+    .table-talent .text-end {
+        text-align: left !important;
+    }
+
+
+    .pc-mode .rank {
+        width: 60px !important;
+    }
+
+    .pc-mode .card {
+        width: 100% !important;
+        margin: 0 auto !important;
+    }
+
+    .pc-mode td, .pc-mode .mono {
+        font-size: 9pt !important;
+    }
+
+    .pc-mode td, .pc-mode th {
+        font-size: 9pt !important;
+    }
+
+    .pc-mode .deck-card-mini {
+        height: 46px !important;
+    }
+
+    .pc-mode .card-image {
+        width: 46px !important;
+    }
+
+    .pc-mode .fs-4 {
+        font-size: 1rem !important;
+    }
+}
+
+@container (max-width: 600px) {
+    .modal-content .col-resize {
+        width: 100%;
+        float: left;
+        text-align: left;
+    }
+
+    #nickname {
+        width: 100%;
+    }
+
+    .profile-options {
+        display: inline-block !important;
+    }
+}
+
+.draghover {
+    background:#010 !important;
+}
+
+.pc-mode {
+    display: block !important;
+}
+
+.pc-mode .card-header {
+    display: none;
+}
+
+.pc-mode .card {
+    width: 80%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.pc-mode .deck-card-mini {
+    height: 64px;
+}
+
+.pc-mode .card-image {
+    width: 64px;
+}
+
+.pc-mode .rank {
+    width: 90px;
+}
+
+.pc-mode td, .pc-mode .mono {
+    font-size: 14pt;
+}
+
+.pc-mode td, .pc-mode th {
+    font-size: 14pt;
+}
+
+.card-image-info {
+    float:right;
+    position: absolute;
+    right: 2%;
+    bottom: 1%;
+}
+

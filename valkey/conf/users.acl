@@ -1,0 +1,2 @@
+user default on >redacted ~* +@all -@dangerous ~*
+user stypr on >redacted ~* &* +@all

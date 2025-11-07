@@ -1,0 +1,523 @@
+html,
+body {
+    background: #000;
+    touch-action: pan-x pan-y;
+}
+
+:root {
+    color-scheme: dark;
+}
+
+* {
+    font-family: 'M PLUS 1', 'SUIT Variable', sans-serif;
+}
+
+body {
+    display: grid;
+    /* flex-direction: column; */
+    max-width: 100vw;
+    max-height: 100vh;
+    overflow: auto !important;
+}
+
+a {
+    color: #fff;
+}
+
+img {
+    pointer-events: none;
+}
+
+::-webkit-scrollbar {
+    color-scheme: dark;
+    -webkit-appearance: none;
+}
+
+::-webkit-scrollbar:vertical {
+    width: 10px;
+}
+
+::-webkit-scrollbar:horizontal {
+    height: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    background-color: rgba(123, 123, 123, .5);
+}
+
+::-webkit-scrollbar-track { 
+    background-color: transparent;
+    border-radius: 0px;
+}
+
+::-webkit-scrollbar-corner {
+    color-scheme: dark;
+    background-color: transparent;
+}
+
+::-webkit-scrollbar {
+    color-scheme: dark;
+    -webkit-appearance: none;
+}
+
+.modal-body::-webkit-scrollbar:vertical {
+    width: 11px;
+}
+
+.modal-body::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    border: 2px solid var(--bs-body-bg); 
+    background-color: rgba(123, 123, 123, .5);
+}
+
+.modal-body::-webkit-scrollbar-track { 
+    background-color: var(--bs-body-bg); 
+    border-radius: 0px;
+}
+
+.mono {
+    font-family: "Space Mono", "M PLUS 1 Code", "Nanum Gothic Coding", Consolas, monospace !important;
+    font-size: 10pt;
+}
+
+.nickname {
+    font-size: 10pt;
+}
+
+.mini {
+    font-size: 8pt;
+}
+
+#nickname, #searchNickname {
+    max-width: 410px;
+    min-width: 300px;
+}
+
+#btnOptions {
+    min-width: 80px;
+}
+
+.header {
+    background: #111;
+    /* min-width: 1024px; */
+    top: 0;
+    border-bottom: 1px solid #333;
+    height: 100px;
+    padding: 10px 20px;
+    position: fixed;
+    color: white;
+    z-index: 10000 !important;
+    width: 100%;
+}
+
+.optionList {
+    display: flex;
+}
+
+.main {
+    width: 100%;
+    display: inline;
+}
+
+.container-results {
+    /* min-height: calc(100vh - 115px); */
+    padding: 0 6px;
+}
+
+.player {
+    min-height: 60px !important;
+}
+
+.card-container {
+    display: flex;
+}
+
+.card-spacer {
+    margin-bottom: 105px;
+}
+
+@media (max-width: 1200px) {
+    .header {
+        height: auto;
+    }
+    .card-spacer {
+        margin-bottom: 115px;
+    }
+    .infoList {
+        margin-top: 10px;
+    }
+} 
+
+@media (max-width: 900px) {
+
+    body {
+        display: inline-table;
+        flex-direction: column;
+        max-width: unset;
+        max-height: unset;
+        overflow: scroll !important;
+    }
+
+    .title-talent {
+        text-align:left;
+    }
+    
+    .table-talent {
+        width: auto;
+        float: left;
+        text-align: left;
+    }
+
+    .table-talent .text-end {
+        text-align: left !important;
+    }
+
+
+    .pc-mode .rank {
+        width: 60px !important;
+    }
+
+    .pc-mode .card {
+        width: 100% !important;
+        margin: 0 auto !important;
+    }
+
+    .pc-mode td, .pc-mode .mono {
+        font-size: 9pt !important;
+    }
+
+    .pc-mode td, .pc-mode th {
+        font-size: 9pt !important;
+    }
+
+    .pc-mode .deck-card-mini {
+        height: 46px !important;
+    }
+
+    .pc-mode .card-image {
+        width: 46px !important;
+    }
+
+    .pc-mode .fs-4 {
+        font-size: 1rem !important;
+    }
+
+    .pc-mode {
+        padding: 0;
+        margin-top: 0 !important;
+    }
+
+    .optionList {
+        display: block;
+    }
+
+    .header {
+        position: sticky;
+        left: 0;
+        top: unset;
+        width: calc(100vw - 10px);
+    }
+    .card-spacer {
+        margin-bottom: 6px;
+    }
+    .main {
+        /* min-height: calc(100vh - 90px); */
+        width: 100%;
+        /* display: grid; */
+    }
+    .pc-mode {
+        margin-top: 0;
+    }
+} 
+
+.help-image {
+    max-width: 500px;
+    width: 100%;
+    min-width: 200px;
+    border: 1px solid #ccc;
+    padding: 5px;
+    margin: 10px 5px;
+}
+
+.modal {
+    z-index: 20000;
+    pointer-events: none !important;
+}
+
+.modal-backdrop {
+    z-index: 10001 !important;
+}
+
+.profile-options {
+    display: inline-flex;
+}
+
+.deck-card {
+    min-width: 32px;
+    width: 100%;
+    max-width: 128px;
+    border-radius: 0.5em;
+}
+
+.deck-card-mini {
+    height: 40px;
+    border-radius: 0.1em;
+}
+
+.infoLinks {
+    padding-top: 5px;
+}
+
+.infoLinks > a {
+    text-decoration: underline !important;
+    cursor: pointer;
+}
+
+.infoLinks > a:hover {
+    color: #99eded !important;
+}
+
+.menuLinks > a {
+    text-decoration: underline !important;
+    cursor: pointer;
+}
+
+.menuLinks > a:hover {
+    color: #99eded !important;
+}
+
+#help_body a:hover {
+    color: #99eded !important;
+}
+
+.title-talent {
+    text-align:right;
+}
+
+.table-talent {
+    width: 100%;
+    float: right;
+    text-align: right;
+}
+
+.modal-header {
+    cursor: move;
+    background: #222 !important;
+}
+
+.modal-content {
+    container-type: inline-size;
+}
+
+.modal-content.ui-resizable {
+    overflow-y: scroll;
+}
+
+.textPredictionWarning {
+    max-width: 600px;
+}
+
+#optionLanguage {
+    max-width: 200px;
+    display: inline-block;
+}
+
+.resizer {
+    width: 12px;
+    height: 12px;
+    background: #888;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    cursor: nwse-resize;
+    border: 1px solid #666;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    opacity: 0.8;
+    transition: background 0.2s, opacity 0.2s;
+}
+
+.resizer:hover {
+    background: #555;
+    opacity: 1;
+}
+
+@container (max-width: 900px) {
+    .modal-content .col-resize {
+        width: 100%;
+        float: left;
+        text-align: left;
+    }
+
+    #nickname, #searchNickname {
+        width: 100%;
+    }
+
+    .profile-options {
+        display: inline-block !important;
+    }
+
+    .table-talent td:nth-child(2) {
+        width: 130px;
+    }
+}
+
+.draghover {
+    background:#010 !important;
+}
+
+.pc-mode {
+    margin-top: 110px;
+    display: block !important;
+}
+
+.pc-mode .scoreboard-tab {
+    width: unset;
+}
+
+.pc-mode .card-spacer {
+    display: none;
+}
+
+.pc-mode .card-container {
+    display: block;
+}
+
+.pc-mode .card-header {
+    display: none;
+}
+
+.pc-mode .card {
+    width: 80%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.pc-mode .deck-card-mini {
+    height: 64px;
+}
+
+.pc-mode .card-image {
+    width: 64px;
+}
+
+.pc-mode .rank {
+    width: 90px;
+}
+
+.pc-mode td, .pc-mode .mono {
+    font-size: 14pt;
+}
+
+.pc-mode td, .pc-mode th {
+    font-size: 14pt;
+}
+
+.scoreboard-tab {
+    max-width: 100%;
+    min-width: 420px;
+    width: max-content;
+    flex-shrink: 0;
+    margin-right: 3px;
+}
+
+.scoreboard-progress-bar {
+    border: 1px solid #000;
+    padding: 10px;
+    background: #000;
+    margin-bottom: 10px;
+}
+
+.scoreboard-progress-bar .progress {
+    border-radius: 0;
+    border: 1px solid #333;
+}
+
+#table_log_recent {
+    overflow: scroll;
+    display: inline-grid;
+    height: 348px;
+    max-width: 100%;
+    background: #000;
+}
+
+.table-wrapper {
+    position: relative;
+    background: #000;
+}
+
+.table-scroll {
+    height: 150px;
+    overflow: auto;  
+}
+
+.table-wrapper table {
+    width: 100%;
+    background: #000;
+}
+
+.table-wrapper table thead th {
+    position: sticky;
+    top: -1px;
+    z-index: 2;
+    width: 35%;
+}
+
+.table-found {
+    --bs-table-color: #fff;
+    --bs-table-bg: #000;
+    --bs-table-border-color: #000;
+    --bs-table-striped-bg: #000;
+    --bs-table-striped-color: #fff;
+    --bs-table-active-bg: #121;
+    --bs-table-active-color: #fff;
+    --bs-table-hover-bg: #121;
+    --bs-table-hover-color: #fff;
+    color: var(--bs-table-color);
+    border-color: var(--bs-table-border-color);
+}
+
+#errorCritical {
+  display: table;
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  font-family: "M PLUS 1","SUIT Variable",sans-serif;
+}
+
+#errorCritical .middle {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+#errorCritical .inner {
+    margin-left: auto;
+    margin-right: auto;
+    width: 440px;
+    display: flex;
+    background: rgba(0,0,0,0.9);
+    padding: 20px;
+}
+
+#errorCritical .inner img {
+    margin-bottom: 10px;
+}
+
+.table-layout-fixed {
+    table-layout: fixed;
+}
+
+.analysis-column-leftmost {
+    width: 25%;
+    max-width: 250px;
+}
+
+.card-image-info {
+    float:right;
+    position: absolute;
+    right: 2%;
+    bottom: 1%;
+}
+

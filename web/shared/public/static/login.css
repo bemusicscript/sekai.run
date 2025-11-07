@@ -1,0 +1,169 @@
+html,
+body {
+    background: #000;
+}
+
+:root {
+    color-scheme: dark;
+}
+
+* {
+    font-family: 'M PLUS 1', 'SUIT Variable', sans-serif;
+}
+
+body {
+    overflow: initial !important;
+}
+
+a {
+    color: #fff;
+}
+
+img {
+    pointer-events: none;
+}
+
+::-webkit-scrollbar {
+    color-scheme: dark;
+    -webkit-appearance: none;
+}
+
+::-webkit-scrollbar:vertical {
+    width: 6px;
+}
+
+::-webkit-scrollbar:horizontal {
+    height: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    background-color: rgba(123, 123, 123, .5);
+}
+
+::-webkit-scrollbar-track {
+    background-color: transparent;
+    border-radius: 0px;
+}
+
+::-webkit-scrollbar {
+    color-scheme: dark;
+    -webkit-appearance: none;
+}
+
+body {
+  background: #000;
+  height: 100dvh;
+  height: available;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #e0e0e0;
+}
+
+.disclaimer {
+    position:fixed;
+    bottom: 10px;
+    right: 10px;
+    text-align: right;
+    font-size: 8pt;
+}
+
+.statistics {
+    position:fixed;
+    top: 10px;
+    left: 10px;
+    text-align: left;
+    font-size: 9pt;
+}
+
+.glass-card {
+    z-index: 100!important;
+    background: #111111;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 2rem;
+    width: 100%;
+    max-width: 380px;
+}
+
+.form-floating label {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.form-floating > label::after {
+    background-color: transparent !important;
+}
+
+.form-control {
+    background-color: rgba(255, 255, 255, 0.05) !important;
+    border: none;
+    color: white;
+}
+
+.form-control:focus {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    box-shadow: none;
+    color: white;
+}
+
+.btn-custom {
+    background: linear-gradient(45deg, #134E5E, #719280);
+    border: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    color: white;
+}
+
+.btn-custom:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 15px rgba(65, 155, 108, 0.6);
+}
+
+a {
+    color: #9fff9f;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type='number'] {
+    -moz-appearance: textfield;
+}
+
+#loginError, #signUpError {
+    font-size: 10pt;
+}
+
+.toggle-password {
+    color: #ccc;
+    border: none;
+    background: none;
+    font-size: 12pt;
+    margin-right: 14px;
+}
+
+.toggle-password:hover {
+    color: white;
+}
+
+.alert-danger {
+    background-color: #974c3c;
+}
+
+.alert-info {
+    background-color: #3468ab;
+}
+
+.alert-success {
+    background-color: #007c5c;
+}
+

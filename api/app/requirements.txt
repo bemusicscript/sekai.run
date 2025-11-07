@@ -1,0 +1,14 @@
+# Updating to latest breaks the apphash update
+UnityPy==1.23.0
+aiocache==0.12.3
+APScheduler==3.11.0
+fastapi==0.116.1
+pycryptodome==3.23.0
+python-dotenv==1.1.1
+Requests==2.32.5
+uvicorn==0.35.0
+orjson==3.11.2
+aiocache[redis]
+msgpack==1.1.1
+mariadb==1.1.13
+httpx==0.28.1

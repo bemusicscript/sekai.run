@@ -1,0 +1,122 @@
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    color-scheme: dark;
+}
+
+::-webkit-scrollbar {
+    color-scheme: dark;
+    -webkit-appearance: none;
+    width: 10px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 0px;
+    background-color: rgba(123, 123, 123, .9);
+}
+
+::-webkit-scrollbar-track {
+    background-color: transparent;
+    border-radius: 0px;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "M PLUS 1", "SUIT Variable", sans-serif;
+}
+
+#center {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+#boxes {
+  display: flex;
+  flex-wrap: wrap; /* Allow wrapping on small screens */
+  justify-content: center;
+}
+
+.box {
+  position: relative; /* Enables absolute positioning for inner elements */
+  border: 1px solid #ccc;
+  width: 230px;
+  height: 230px;
+  margin: 5px;
+  text-shadow: #000 3px 0 10px;
+  text-decoration: none;
+}
+
+.box:hover {
+  cursor: pointer;
+  background: rgba(231, 231, 231, 0.8);√
+  color: #000;
+  text-shadow: unset;
+}
+
+.box-label {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  text-align: left;
+  font-size: 13px;
+  z-index: 20;
+}
+
+.box-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  font-size: 25px;
+  flex-direction: column;
+  z-index: 10;
+}
+
+.small {
+  font-size: 15px;
+  text-shadow: 0 0 BLACK;
+}
+
+.box-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -10;
+}
+
+.box-background-cover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -5;
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.box-background.ikea {
+    background: url(/static/mysekai/nichiyoudaiku.png);
+    background-position: center;
+    background-size: contain;
+}
+
+.box-background.gate {
+    background: url(/static/mysekai/gate.png);
+    background-position: center;
+    background-size: contain;
+}
+
+.badge {
+    border-radius: 0;
+}
+

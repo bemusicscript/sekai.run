@@ -1,0 +1,25 @@
+MAILTO=""
+
+# Update asset db
+1,31 * * * * nobody cd /usr/src/app && /usr/local/bin/python3 app.py
+
+# Update DB
+50 11 * * * nobody cd /usr/src/app/api && /usr/local/bin/python3 proseka.py assets_character
+10 13 * * * nobody cd /usr/src/app/api && /usr/local/bin/python3 proseka.py assets_character
+10 15 * * * nobody cd /usr/src/app/api && /usr/local/bin/python3 proseka.py assets_character
+
+# Update apphash
+10 11 * * * nobody cd /usr/src/app/api && /usr/local/bin/python3 update_apphash.py
+10 13 * * * nobody cd /usr/src/app/api && /usr/local/bin/python3 update_apphash.py
+00 15 * * * nobody cd /usr/src/app/api && /usr/local/bin/python3 update_apphash.py
+
+# predictions
+*/20 * * * * nobody cd /usr/src/prediction && /usr/local/bin/node prediction.js
+
+# Runner
+*/5 * * * * nobody cd /usr/src/runner && /usr/local/bin/python3 runner.py
+* * * * * nobody cd /usr/src/runner && /usr/local/bin/python3 runner_current.py
+
+# IKEA
+# 15 13 * * * nobody cd /usr/src/ikea && ./dump.sh
+# 15 01 * * * nobody cd /usr/src/ikea && ./dump.sh

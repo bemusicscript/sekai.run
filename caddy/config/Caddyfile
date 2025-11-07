@@ -1,0 +1,56 @@
+{
+    email contact@sekai.run
+    admin off
+}
+
+######################################### DEFAULT
+
+sekai.run {
+    tls internal
+    import logging/scoreboard.conf
+    import config/default-headers.conf
+    import config/security.conf
+
+    reverse_proxy https://web.internal:4443 {
+        header_up Host sekai.run
+        transport http {
+            versions 2
+			tls_insecure_skip_verify
+            tls_server_name sekai.run
+		}
+    }
+}
+
+my.sekai.run {
+    tls internal
+    import logging/mysekai.conf
+    import config/default-headers.conf
+    import config/security.conf
+
+    reverse_proxy https://web.internal:4443 {
+        header_up Host my.sekai.run
+        transport http {
+            versions 2
+			tls_insecure_skip_verify
+            tls_server_name my.sekai.run
+		}
+    }
+}
+
+db.sekai.run {
+    tls internal
+    import logging/default.conf
+    import config/default-headers.conf
+    import config/security.conf
+
+    reverse_proxy https://web.internal:4443 {
+        header_up Host db.sekai.run
+        transport http {
+            versions 2
+			tls_insecure_skip_verify
+            tls_server_name db.sekai.run
+		}
+    }
+}
+
+##########################################

@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html class="notranslate" translate="no">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="robots" content="noindex,nofollow">
+    <meta name="google" content="notranslate">
+    <meta name="theme-color" content="#000000">
+    <meta name="referrer" content="no-referrer">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="preload" href="//cdn.jsdelivr.net/npm/bootswatch@5.3.7/dist/darkly/bootstrap.min.css" as="style" />
+    <link rel="preload" href="/static/haruka.css?revision=$$JAVASCRIPT_REVISION$$" as="style" />
+    <link rel="shortcut icon" href="/static/icon/icon.png">
+    <link rel="apple-touch-icon-precomposed" href="/static/icon/icon.png">
+    <link rel="apple-touch-icon" href="/static/icon/icon.png">
+    <link rel="manifest" href="/app.webmanifest" crossorigin="use-credentials">
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=M+PLUS+1&display=swap" crossorigin="anonymous">
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=M+PLUS+1+Code&display=swap" crossorigin="anonymous">
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Nanum+Gothic+Coding&display=swap" crossorigin="anonymous">
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Space+Mono&display=swap" crossorigin="anonymous">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@sun-typeface/suit@2.0.5/fonts/variable/woff2/SUIT-Variable.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/bootswatch@5.3.7/dist/darkly/bootstrap.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/haruka.css?revision=$$JAVASCRIPT_REVISION$$">
+    <title>Scoreboard</title>
+</head>
+
+<body>
+    <!-- main -->
+    <div class="main">
+        <!-- header -->
+        <div class="header">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-7">
+                    <input type="text" class="form-control mb-2 mt-2 d-inline-block rounded-0" id="searchNickname" autocomplete="on"><br>
+                    <div class="menuLinks">
+                        <a id="menuBookmark"></a>
+                        <span class="middot"></span>
+                        <a id="btnOptions" class="textOptions"></a>
+                        <span class="middot d-none"></span>
+                        <a id="menuNotification" class="d-none"></a>
+                        <span class="middot"></span>
+                        <a id="menuHelp"></a><br>
+                    </div>
+                </div>
+                <div class="infoList col-xs-12 col-sm-12 col-md-5 text-end">
+                    <b><span id="eventName">...</span></b><br>
+                    <small id="activeUsers" class="mono mini"></small><small id="apiVersion" class="mono mini">...</small><br>
+                    <div class="infoLinks">
+                        <a id="menuMysekai" href="//my.sekai.run/" target="_blank" style="display:none;"></a>
+                        <span class="middot" style="display:none;"></span>
+                        <a id="menuOfficialStore" href="//pjsekai.sega.jp/webstore" target="_blank"></a><br>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-results" id="scoreboardResults">
+            <div class="card-spacer"></div>
+            <div class="spinner-border text-light" role="status">
+                <span class="sr-only"></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- options modal -->
+    <div class="modal" id="optionsModal" aria-labelledby="optionsModal" tabindex="-1" class="bg-transparent" data-bs-backdrop="false" data-bs-keyboard="false">
+        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
+            <div class="modal-content rounded-0" id="optionsContent">
+                <div class="modal-header rounded-0">
+                    <h5 class="modal-title textOptions"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="languageBody">
+                        <h4>
+                            <picture class="me-1">
+                                <source srcset="https://fonts.gstatic.com/s/e/notoemoji/latest/1f30f/512.webp" type="image/webp">
+                                <img src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f30f/512.gif" alt="🌏" width="30" height="30">
+                            </picture>
+                            <select class="form-select m-1 rounded-0" id="optionLanguage">
+                                <option value="ja">日本語</option>
+                                <option value="ko">한국어</option>
+                                <option value="en">English</option>
+                            </select>
+                        </h4>
+                    </div>
+                    <div class="form-check form-switch me-2">
+                        <input class="form-check-input" type="checkbox" id="optionPCMode">
+                        <label class="form-check-label" for="optionPCMode" id="textOptionPCMode"></label>
+                    </div>
+                    <div class="form-check form-switch me-2">
+                        <input class="form-check-input" type="checkbox" id="optionHide">
+                        <label class="form-check-label" for="optionHide" id="textOptionHide"></label>
+                    </div>
+                    <div class="form-check form-switch me-2">
+                        <input class="form-check-input" type="checkbox" id="optionBorderOnly">
+                        <label class="form-check-label" for="optionBorderOnly" id="textOptionBorderOnly"></label>
+                    </div>
+                    <div class="form-check form-switch me-2">
+                        <input class="form-check-input" type="checkbox" id="optionHourly">
+                        <label class="form-check-label" for="optionHourly" id="textOptionHourly"></label>
+                    </div>
+                    <div class="form-check form-switch me-2">
+                        <input class="form-check-input" type="checkbox" id="optionGap">
+                        <label class="form-check-label" for="optionGap" id="textOptionGap"></label>
+                    </div>
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" id="optionRefresh">
+                        <label class="form-check-label" for="optionRefresh" id="textOptionRefresh"></label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- notification modal -->
+    <div class="modal" id="notificationModal" aria-labelledby="notificationModal" tabindex="-1" class="bg-transparent" data-bs-backdrop="false" data-bs-keyboard="false">
+        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
+            <div class="modal-content rounded-0" id="notificationContent">
+                <div class="modal-header rounded-0">
+                    <h5 class="modal-title textNotifications"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Notifications are not enabled.
+                    <div class="form-check form-switch me-2">
+                        <input class="form-check-input" type="checkbox" id="optionPCMode">
+                        <label class="form-check-label" for="optionPCMode" id="textOptionPCMode"></label>
+                    </div>
+                    <div class="form-check form-switch me-2">
+                        <input class="form-check-input" type="checkbox" id="optionHide">
+                        <label class="form-check-label" for="optionHide" id="textOptionHide"></label>
+                    </div>
+                    <div class="form-check form-switch me-2">
+                        <input class="form-check-input" type="checkbox" id="optionBorderOnly">
+                        <label class="form-check-label" for="optionBorderOnly" id="textOptionBorderOnly"></label>
+                    </div>
+                    <div class="form-check form-switch me-2">
+                        <input class="form-check-input" type="checkbox" id="optionHourly">
+                        <label class="form-check-label" for="optionHourly" id="textOptionHourly"></label>
+                    </div>
+                    <div class="form-check form-switch me-2">
+                        <input class="form-check-input" type="checkbox" id="optionGap">
+                        <label class="form-check-label" for="optionGap" id="textOptionGap"></label>
+                    </div>
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" id="optionRefresh">
+                        <label class="form-check-label" for="optionRefresh" id="textOptionRefresh"></label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- profile modal -->
+    <div class="modal" id="profileModal" aria-labelledby="profileModal" tabindex="-1" class="bg-transparent" data-bs-backdrop="false" data-bs-keyboard="false">
+        <div class="modal-dialog modal-dialog-scrollable modal-xl modal-dialog-centered">
+            <div class="modal-content rounded-0" id="profileContent">
+                <div class="modal-header rounded-0">
+                    <h5 class="modal-title" id="profileNickname">Loading...</h5>
+                    <button type="button" class="btn-danger btn btn-sm rounded-0" style="margin-left: 10px;" id="stopCompareButton">...</button>
+                    <button type="button" class="btn-warning btn btn-sm rounded-0" style="margin-left: 10px; display: none;" id="notificationAddButton"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="profileLoading" class="spinner-border text-light" role="status">
+                        <span class="sr-only"></span>
+                    </div>
+                    <div id="profileResult">
+                        <div class="row">
+                            <div class="col col-12 col-sm-12 col-md-12 col-lg-12 pb-4 col-resize">
+                                <div class="alert alert-danger w-100" id="textErrorServerUpdate"></div>
+                            </div>
+                            <div class="col col-12 col-sm-12 col-md-12 col-lg-8 pb-5 col-resize">
+                                <h4 id="textDecks"></h4>
+                                <table class="w-100">
+                                    <tr id="profileDecks">
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="col-12 col-sm-12 col-md-12 col-lg-4 pb-5 col-resize">
+                                <h4 class="title-talent" id="textTalent"></h4>
+                                <table class="table-talent w-100">
+                                    <tr>
+                                        <td class="text-end" id="deckDefault"></td>
+                                        <td class="text-end"><span id="scoreBasic"></span><br></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-end" id="deckArea"></td>
+                                        <td class="text-end"><span id="scoreArea"></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-end" id="deckCharacter"></td>
+                                        <td class="text-end"><span id="scoreCharacter"></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-end" id="deckTitle"></td>
+                                        <td class="text-end"><span id="scoreHonor"></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-end align-top" id="deckMysekaiCharacter"></td>
+                                        <td class="text-end"><span id="scoreMysekaiCharacter"></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-end align-top" id="deckMysekaiGate"></td>
+                                        <td class="text-end"><span id="scoreMysekaiGate"></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-end" id="deckTotal"></td>
+                                        <td class="text-end"><span id="scoreTotal"></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-end" id="deckEventBonus"></td>
+                                            <td class="text-end"><span id="eventBonus"></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-end" id="deckSkillRange"></td>
+                                        <td class="text-end"><span id="skillRange"></span></td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="col col-12 col-sm-12 col-md-12 col-lg-12 pb-5">
+                                <h4 id="textProfileGraph"></h4>
+                                <div class="profile-options">
+                                    <div class="form-check form-switch me-2">
+                                        <input class="form-check-input" type="checkbox" id="optionBorderGraph">
+                                        <label class="form-check-label" for="optionBorderGraph" id="textOptionBorderGraph"></label>
+                                    </div>
+                                    <div class="form-check form-switch me-2">
+                                        <input class="form-check-input" type="checkbox" id="optionPlayerGraph">
+                                        <label class="form-check-label" for="optionPlayerGraph" id="textOptionPlayerGraph"></label>
+                                    </div>
+                                    <div class="form-check form-switch me-2">
+                                        <input class="form-check-input" type="checkbox" id="optionPredictionGraph">
+                                        <label class="form-check-label" for="optionPredictionGraph" id="textOptionPredictionGraph"></label>
+                                    </div>
+                                </div>
+                                <div id="textPredictionWarning" class="alert bg-info mt-2 mb-0"></div>
+                                <ul class="nav nav-pills mt-2" id="chartType"></ul>
+                                <div class="chartWrapper" style="height: 50vh; width: 100%; position: relative;">
+                                    <canvas id="chart" style="background: #444; margin-top: 10px; border-radius: 0.5em;"></canvas>
+                                    <div id="chartSelect" style="position: absolute; right: 100px; top: 10px;"></div>
+                                </div>
+                                <div id="chartNotFound" class="m-5 text-center hide">
+                                    <img src="./static/sorry.png"><br><br>
+                                    <span id="chartError"></span>
+                                </div>
+                                <br>
+                            </div>
+                            <div class="col col-12 col-sm-12 col-md-12 col-lg-7 col-resize mb-5" id="scoreSpeed">
+                                <h4 id="textSpeed"></h4>
+                                <div class="profile-options pb-1">
+                                    <div class="form-check form-switch me-2">
+                                        <input class="form-check-input" type="checkbox" id="optionDaySpeed">
+                                        <label class="form-check-label" for="optionBorderGraph" id="textOptionDaySpeed"></label>
+                                    </div>
+                                </div>
+                                <table class="table table-bordered w-100">
+                                    <tr>
+                                        <th class="text-center align-middle text-white bg-black" rowspan="3" style="width: 150px" id="textPlayerSpeedTimeTotal"></th>
+                                        <td class="text-center align-middle text-white textPlayer" id="textPlayerSelf">...</td>
+                                        <td class="text-center align-middle text-white" id="speedPlayerTotal"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center align-middle text-white textCompare" id="textPlayerCompare">...</td>
+                                        <td class="text-center align-middle text-white textCompareResult" id="speedCompareTotal"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center align-middle text-white textBorder">...</td>
+                                        <td class="text-center align-middle text-white" id="speedBorderTotal"></td>
+                                    </tr>
+                                    <tr>
+                                        <th class="text-center align-middle text-white bg-black" rowspan="3" id="textPlayerSpeedTimeDay"></th>
+                                        <td class="text-center align-middle text-white textPlayer" id="textPlayerSelf">...</td>
+                                        <td class="text-center align-middle text-white" id="speedPlayerDay"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center align-middle text-white textCompare" id="textPlayerCompare">...</td>
+                                        <td class="text-center align-middle text-white textCompareResult" id="speedCompareDay"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center align-middle text-white textBorder">...</td>
+                                        <td class="text-center align-middle text-white" id="speedBorderDay"></td>
+                                    </tr>
+                                    <tr class="hourlyInfoDisplay">
+                                        <th class="text-center align-middle text-white bg-black" rowspan="3" id="textBorderSpeedTimeHour"></th>
+                                        <td class="text-center align-middle text-white textPlayer" id="textPlayerSelf">...</td>
+                                        <td class="text-center align-middle text-white" id="speedPlayerHour"></td>
+                                    </tr>
+                                    <tr class="hourlyInfoDisplay">
+                                        <td class="text-center align-middle text-white textCompare" id="textPlayerCompare">...</td>
+                                        <td class="text-center align-middle text-white textCompareResult" id="speedCompareHour"></td>
+                                    </tr>
+                                    <tr class="hourlyInfoDisplay">
+                                        <td class="text-center align-middle text-white textBorder">...</td>
+                                        <td class="text-center align-middle text-white" id="speedBorderHour"></td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="col col-12 col-sm-12 col-md-12 col-lg-5 col-resize pb-5" id="scoreSpeedLastHour">
+                                <h4 id="textSpeedLasthour">Last 1hr</h4>
+                                <div class="profile-options pb-1">
+                                    <span id="textPlayerLastHourStatus">...</span>
+                                </div>
+                                <div id="table-profile-last-hour" class="table-wrapper">
+                                    <div class="table-scroll" class="mb-5">
+                                        <table class="table table-bordered w-100 align-middle">
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col col-12 col-sm-12 col-md-12 col-lg-12 col-resize pb-5" id="tabAnalysis">
+                                <h4 id="textRunAnalysis"></h4>
+                                <div id="textRunAnalysisWarning" class="alert bg-info mt-2 mb-2"></div>
+                                <div id="jiikuGraphAnalysis">
+                                </div>
+                            </div>
+
+                            <div class="col col-12 col-sm-12 col-md-12 col-lg-12" id="tabHistory">
+                                <h4 id="textHistory">User History</h4>
+                                <table class="table table-bordered w-100 align-middle">
+                                    <thead>
+                                        <th class="text-center align-middle text-white bg-black" id="textEventName">...</th>
+                                        <th class="text-center align-middle text-white bg-black" id="textRank">...</td>
+                                        <th class="text-center align-middle text-white bg-black" id="textNickname">...</th>
+                                        <th class="text-center align-middle text-white bg-black" id="textScore">...</td>
+                                    </thead>
+                                    <tbody id="userHistory">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="resizer"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- help modal -->
+    <div class="modal" id="helpModal" aria-labelledby="helpModal" tabindex="-1" class="bg-transparent" data-bs-backdrop="false" data-bs-keyboard="false">
+        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content rounded-0">
+                <div class="modal-header rounded-0">
+                    <h5 class="modal-title" id="helpTitle"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="helpBody"></div>
+                </div>
+                <div class="resizer"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- bookmark modal -->
+    <div class="modal" id="bookmarkModal" aria-labelledby="helpModal" tabindex="-1" class="bg-transparent" data-bs-backdrop="false" data-bs-keyboard="false">
+        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
+            <div class="modal-content rounded-0">
+                <div class="modal-header rounded-0">
+                    <h5 class="modal-title" id="bookmarkTitle"></h5>
+                    <button type="button" class="btn-close" onclick="$('#bookmarkModal').modal('hide');" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="bookmarkBody">
+                </div>
+                <div class="resizer"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- critical error -->
+    <div id="errorCritical" class="d-none position-fixed bg-black" style="z-index:9999999 !important; display: none;">
+        <div class="middle">
+            <div class="inner" style="max-width: 680px; width:initial; min-width: 440px;">
+                <div style="display: inline-block; margin-right: 15px;">
+                    <img src="/static/sorry-kohane.png" width=128>
+                </div>
+                <div style="display: inline-block">
+                    <span id="textErrorReason"></span><br><br>
+                    <small><a href="https://sekai.run/" id="textRefresh"></a></small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- scripts -->
+    <script referrerpolicy="no-referrer" src="//cdn.jsdelivr.net/npm/marked@16.2.0/lib/marked.umd.min.js" crossorigin="anonymous"></script>
+    <script referrerpolicy="no-referrer" src="//cdn.jsdelivr.net/npm/jquery@4.0.0-rc.1/dist/jquery.min.js" crossorigin="anonymous"></script>
+    <script referrerpolicy="no-referrer" src="//cdn.jsdelivr.net/npm/jquery-ui@1.14.1/dist/jquery-ui.min.js" crossorigin="anonymous"></script>
+    <script referrerpolicy="no-referrer" src="//cdn.jsdelivr.net/npm/fflate@0.8.2/umd/index.js" crossorigin="anonymous"></script>
+    <script referrerpolicy="no-referrer" src="//cdn.jsdelivr.net/npm/chart.js@4.5.0/dist/chart.umd.js" crossorigin="anonymous"></script>
+    <script referrerpolicy="no-referrer" src="//cdn.jsdelivr.net/npm/hammerjs@2.0.8/hammer.min.js" crossorigin="anonymous"></script>
+    <script referrerpolicy="no-referrer" src="//cdn.jsdelivr.net/npm/luxon@3.7.1/build/global/luxon.min.js" crossorigin="anonymous"></script>
+    <script referrerpolicy="no-referrer" src="//cdn.jsdelivr.net/npm/chartjs-adapter-luxon@1.3.1/dist/chartjs-adapter-luxon.umd.min.js" crossorigin="anonymous"></script>
+    <script referrerpolicy="no-referrer" src="//cdn.jsdelivr.net/npm/chartjs-plugin-zoom@2.2.0/dist/chartjs-plugin-zoom.min.js" crossorigin="anonymous"></script>
+    <script referrerpolicy="no-referrer" src="//cdn.jsdelivr.net/npm/hacktimer@1.1.3/HackTimer.silent.min.js" crossorigin="anonymous"></script>
+    <script referrerpolicy="no-referrer" src="/static/helper.js?revision=$$JAVASCRIPT_REVISION$$" crossorigin="anonymous" defer></script>
+    $$JAVASCRIPT_RENDER$$
+</body>
+</html>

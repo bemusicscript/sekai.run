@@ -1,0 +1,28 @@
+#error-critical {
+  display: table;
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  font-family: "M PLUS 1","SUIT Variable",sans-serif;
+}
+
+#error-critical .middle {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+#error-critical .inner {
+    margin-left: auto;
+    margin-right: auto;
+    width: 440px;
+    display: flex;
+    background: rgba(0,0,0,0.9);
+    padding: 20px;
+}
+
+#error-critical .inner img {
+    margin-bottom: 10px;
+}
+

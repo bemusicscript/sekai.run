@@ -1,0 +1,4 @@
+*/2 * * * * sudo -u nobody -g nogroup HOME=/home/nobody sh -c 'cd /mnt/external/sekai/web/data/javascript_beta; echo $HOME; git pull;'
+*/2 * * * * python3 /mnt/external/sekai/caddy/active_user.py /mnt/external/sekai/caddy/log/scoreboard.log
+*/5 * * * * sh -c 'cd /mnt/external/sekai/dns/zones && python3 ref.py'
+0 3 * * 0 /root/backup.sh
