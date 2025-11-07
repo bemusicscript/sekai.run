@@ -1,7 +1,7 @@
 ## [sekai.run](https://sekai.run/)
 
 This repository contains the main codebase for **Sekai Scoreboard**, excluding critical infrastructure and essential components.  
-The service runs smoothly with over **1,000 concurrent connections** on a single **ODROID-H4** machine.
+The service runs smoothly with over **1,000 concurrent connections** on a single **ODROID-H4** machine. There are no stress tests done directly from the system, but it is likely that the server can allow even more throughput thanks to Cloudflare's caching system.
 
 The scoreboard automatically updates every minute from the game server and also from the browser, allowing you to keep it open and play without needing a secondary device during event runs.
 
