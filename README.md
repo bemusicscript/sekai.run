@@ -22,9 +22,9 @@ https://github.com/user-attachments/assets/a35370f8-ec1a-478c-861e-8859945c6107
 
 ## ⚙️ Architecture
 
-### **Device**
-- **ODROID-H4** (Intel i3-1215U, 32GB RAM)  
-  Handles ~1,000 concurrent connections reliably and efficiently.
+### **Server**
+- **ODROID-H4** (Intel i3-305 8C8T, 32GB RAM)
+  handles ~1,000 concurrent connections reliably and efficiently.
 
 ### **Networking**
 - **Cloudflare**
