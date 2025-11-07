@@ -15,7 +15,6 @@ The scoreboard automatically updates every minute from the game server and also 
 Due to frequent large-scale design changes and the use of specialized libraries for optimized performance and throughput, parts of the codebase may appear messy or experimental.
 
 
-
 ## 🧩 Demo
 
 https://github.com/user-attachments/assets/a35370f8-ec1a-478c-861e-8859945c6107
@@ -37,10 +36,11 @@ https://github.com/user-attachments/assets/a35370f8-ec1a-478c-861e-8859945c6107
 ### **Backend**
 - **Python**
   - Fully working game client written entirely in Python *(removed for security reasons, originally built with help from TWY)*.
-  - Automatic Unity game version updater.
-  - `aiocache` for sharing sessions across multiple processes (cached via Valkey or Redis).
-  - `FastAPI` + `Uvicorn` for performance-oriented async serving.
-  - `orjson` for ultra-fast JSON serialization.
+  - Automatic Unity game version update script.
+  - Client API wrapper
+    - `aiocache` for sharing sessions across multiple processes (cached via Valkey or Redis).
+    - `FastAPI` + `Uvicorn` for performance-oriented async serving.
+    - `orjson` for ultra-fast JSON (de)serialization.
 - **Node.js**
   - **Predictions Crawler**
     - Originally implemented custom prediction/statistics logic; now replaced by Jiiku’s system for higher accuracy.
