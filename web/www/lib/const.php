@@ -48,6 +48,7 @@ $dangerous_players = [
     // x
     "114301159094726664"  => ["mawashi"],              // haruka banner 2nd place
     "28772675702763533"   => ["mawashi"],              // kohane WL warmsea6
+    "6399279338233858"    => ["mawashi"],              // 新年言祝ぐ、祈りの舞
 
     // Trades
     "5119800586338310"    => ["trade"],                // mio acc trade
