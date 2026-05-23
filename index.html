@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>sekai.run Service Notice</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@sun-typeface/suit@2.0.5/fonts/static/woff2/SUIT.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=M+PLUS+1:wght@400;500;600;700&display=swap">
+
+  <style>
+    :root {
+      --bg: #f6f7fb;
+      --bg-soft: #eef2ff;
+      --card: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --border-strong: #d1d5db;
+      --accent: #6366f1;
+      --accent-dark: #4f46e5;
+      --accent-light: #eef2ff;
+      --shadow: 0 20px 60px rgba(15, 23, 42, 0.08);
+      --radius-lg: 24px;
+      --radius-md: 16px;
+      --radius-sm: 12px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family:
+        "M PLUS 1",
+        "SUIT",
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        "Noto Sans KR",
+        "Noto Sans JP",
+        "Apple SD Gothic Neo",
+        "Malgun Gothic",
+        sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(99, 102, 241, 0.14), transparent 32rem),
+        linear-gradient(180deg, #ffffff 0%, var(--bg) 34%, var(--bg) 100%);
+      color: var(--text);
+      line-height: 1.75;
+      word-break: normal;
+      overflow-wrap: anywhere;
+    }
+
+    [lang="ja"] {
+      word-break: normal;
+      line-break: strict;
+      overflow-wrap: anywhere;
+    }
+
+    [lang="ko"] {
+      word-break: keep-all;
+      overflow-wrap: break-word;
+    }
+
+    [lang="ja"] h1,
+    [lang="ja"] h2,
+    [lang="ja"] h3 {
+      letter-spacing: 0;
+    }
+
+    a {
+      color: var(--accent-dark);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .notice-page {
+      width: min(960px, 100%);
+      margin: 0 auto;
+      padding: 48px 20px 72px;
+    }
+
+    .notice-card {
+      background: rgba(255, 255, 255, 0.94);
+      border: 1px solid rgba(229, 231, 235, 0.9);
+      border-radius: var(--radius-lg);
+      padding: 38px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .brand-mark {
+      width: 12px;
+      height: 12px;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 0 6px var(--accent-light);
+      flex: 0 0 auto;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: var(--accent-light);
+      color: var(--accent-dark);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+    }
+
+    .language-tabs {
+      display: inline-flex;
+      gap: 6px;
+      padding: 5px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: #f9fafb;
+    }
+
+    .language-tabs button {
+      appearance: none;
+      border: 0;
+      background: transparent;
+      color: var(--muted);
+      border-radius: 999px;
+      padding: 8px 14px;
+      font: inherit;
+      font-size: 14px;
+      font-weight: 800;
+      line-height: 1.2;
+      cursor: pointer;
+      transition:
+        background 0.16s ease,
+        color 0.16s ease,
+        box-shadow 0.16s ease;
+    }
+
+    .language-tabs button:hover {
+      color: var(--accent-dark);
+      background: #ffffff;
+    }
+
+    .language-tabs button.active {
+      background: var(--accent);
+      color: #ffffff;
+      box-shadow: 0 6px 16px rgba(99, 102, 241, 0.24);
+    }
+
+    .language-tabs button:focus-visible {
+      outline: 3px solid rgba(99, 102, 241, 0.25);
+      outline-offset: 2px;
+    }
+
+    .language-section {
+      display: none;
+    }
+
+    .language-section.active {
+      display: block;
+    }
+
+    .hero {
+      margin-bottom: 30px;
+    }
+
+    .eyebrow {
+      margin: 0 0 8px;
+      color: var(--accent-dark);
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(28px, 4vw, 40px);
+      line-height: 1.28;
+      letter-spacing: -0.045em;
+    }
+
+    .lead {
+      margin-top: 20px;
+      color: #374151;
+      font-size: 16px;
+    }
+
+    .lead p {
+      margin: 10px 0;
+    }
+
+    .notice-box {
+      margin: 26px 0 0;
+      padding: 16px 18px;
+      border: 1px solid #dbe0ff;
+      border-left: 5px solid var(--accent);
+      border-radius: var(--radius-md);
+      background: linear-gradient(180deg, #f7f8ff 0%, #ffffff 100%);
+      color: #312e81;
+      font-weight: 600;
+    }
+
+    .section {
+      margin-top: 34px;
+    }
+
+    h2 {
+      margin: 0 0 16px;
+      padding-top: 30px;
+      border-top: 1px solid var(--border);
+      font-size: 23px;
+      line-height: 1.35;
+      letter-spacing: -0.03em;
+    }
+
+    h3 {
+      margin: 0 0 12px;
+      font-size: 18px;
+      line-height: 1.45;
+      letter-spacing: -0.02em;
+    }
+
+    p {
+      margin: 12px 0;
+    }
+
+    ul {
+      margin: 12px 0 0;
+      padding-left: 22px;
+    }
+
+    li {
+      margin: 8px 0;
+    }
+
+    .link-list {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin: 16px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .link-list li {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      margin: 0;
+      padding: 15px 16px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      background: #ffffff;
+      transition:
+        transform 0.14s ease,
+        border-color 0.14s ease,
+        box-shadow 0.14s ease;
+    }
+
+    .link-list li:hover {
+      transform: translateY(-1px);
+      border-color: #c7d2fe;
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
+    }
+
+    .link-main {
+      min-width: 0;
+    }
+
+    .link-title {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 800;
+    }
+
+    .link-meta {
+      display: block;
+      margin-top: 3px;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .code-list {
+      margin-top: 14px;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 10px;
+    }
+
+    .code-list li {
+      margin: 0;
+      padding: 13px 15px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      background: #fafafa;
+      font-family:
+        ui-monospace,
+        SFMono-Regular,
+        Menlo,
+        Monaco,
+        Consolas,
+        "Liberation Mono",
+        monospace;
+      font-size: 14px;
+    }
+
+    .qa-list {
+      display: grid;
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .qa-item {
+      padding: 20px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      background: #ffffff;
+    }
+
+    .qa-item p:first-of-type {
+      margin-top: 0;
+    }
+
+    .qa-item p:last-child,
+    .qa-item ul:last-child {
+      margin-bottom: 0;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    .footer-note {
+      margin-top: 34px;
+      padding-top: 22px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    @media (min-width: 760px) {
+      .link-list {
+        grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      }
+
+      .link-list li {
+        align-items: flex-start;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .notice-page {
+        padding: 22px 12px 44px;
+      }
+
+      .notice-card {
+        padding: 22px 18px;
+        border-radius: 18px;
+      }
+
+      .top-bar {
+        align-items: flex-start;
+      }
+
+      .brand {
+        width: 100%;
+      }
+
+      .language-tabs {
+        width: 100%;
+        display: flex;
+      }
+
+      .language-tabs button {
+        flex: 1;
+        padding: 9px 8px;
+      }
+
+      .link-list li {
+        display: block;
+      }
+
+      .notice-box,
+      .qa-item {
+        padding: 16px;
+      }
+
+      body {
+        line-height: 1.7;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="notice-page">
+    <article class="notice-card">
+      <div class="top-bar">
+        <nav class="language-tabs" aria-label="Language selector">
+          <button type="button" class="active" data-lang="ja" aria-pressed="true">日本語</button>
+          <button type="button" data-lang="en" aria-pressed="false">English</button>
+          <button type="button" data-lang="ko" aria-pressed="false">한국어</button>
+        </nav>
+      </div>
+
+      <!-- Japanese -->
+      <section class="language-section active" data-section="ja" lang="ja">
+        <header class="hero">
+          <h1>サービス終了のお知らせ</h1>
+
+          <div class="lead">
+            <p>
+              本サービスの運営者は2026年初めにプロセカを引退しており、今後もサービスを運営する予定はありません。
+            </p>
+            <p>
+              これに伴い、sekai.runを早期終了することになりました。これまでご利用いただき誠にありがとうございました。
+            </p>
+          </div>
+
+          <p class="notice-box">
+            サービス運営者の個人的な事情と判断による決定であるため、何卒ご理解いただけますと幸いです。
+          </p>
+        </header>
+
+        <section class="section">
+          <h2>代替可能なサービス</h2>
+          <p>sekai.run の代替として利用できるサービスは以下のとおりです。</p>
+
+          <ul class="link-list">
+            <li>
+              <div class="link-main">
+                <a class="link-title" href="https://jp.seka.ing/" target="_blank" rel="noopener noreferrer">jp.seka.ing</a>
+                <span class="link-meta">推奨</span>
+              </div>
+            </li>
+            <li>
+              <div class="link-main">
+                <a class="link-title" href="https://pjsk.moe/realtime-ranking/?region=jp" target="_blank" rel="noopener noreferrer">moesekai</a>
+                <span class="link-meta">中国語・日本語・英語対応</span>
+              </div>
+            </li>
+            <li>
+              <div class="link-main">
+                <a class="link-title" href="https://x.com/pj_sekai_border" target="_blank" rel="noopener noreferrer">プロセカボーダーボット</a>
+                <span class="link-meta">
+                  <a href="https://discord.com/invite/SAwqkV7hDp" target="_blank" rel="noopener noreferrer">Discordサーバー</a>
+                </span>
+              </div>
+            </li>
+          </ul>
+        </section>
+
+        <section class="section">
+          <h2>オープンソース</h2>
+          <p>sekai.run で使用されているコードの一部を公開しました。</p>
+
+          <ul class="code-list">
+            <li><a href="https://github.com/bemusicscript/sekai-frontend-public" target="_blank" rel="noopener noreferrer">sekai-frontend-public</a>: Frontend (Vanilla JS)</li>
+            <li><a href="https://github.com/bemusicscript/sekai-backend-public" target="_blank" rel="noopener noreferrer">sekai-backend-public</a>: Backend (Python, NodeJS, PHP etc.)</li>
+          </ul>
+        </section>
+
+        <section class="section">
+          <h2>Q&amp;A</h2>
+
+          <div class="qa-list">
+            <section class="qa-item">
+              <h3>回し（代行行為者）への今後の対応について</h3>
+              <p>
+                回しや代行行為については、
+                公式運営の対策により原因が効果的に除去されたと判断しているため、
+                現在までに公開されている一覧以外に今後の更新予定はありません。
+              </p>
+              <p>ただし、既存の一覧は以下のリンクから引き続き確認できます。</p>
+              <ul>
+                <li>
+                  <a href="https://codeberg.org/lemonsour/snippets/wiki/mawashi" target="_blank" rel="noopener noreferrer">ブロックリスト</a>
+                </li>
+              </ul>
+            </section>
+
+            <section class="qa-item">
+              <h3>sekai.run は違法なのか？</h3>
+              <p>
+                まず、sekai.run はゲームデータを直接取得・抽出・リークする行為を一切行っていません。
+                主に他ウェブサイトや Discord bot などが提供している公開データを基にサービスを運営してきました。
+              </p>
+              <p>
+                2025年にサービスを一時的に閉鎖したのは、周囲からの懸念を受け、
+                法的な問題について改めて検討する時間が必要だったためです。
+              </p>
+              <p>
+                その後、複数の法的リスクについて検討した結果、第三者を通じて提供される事実に基づくデータを、
+                ゲームコミュニティの活性化を目的として無償で運営することについては、
+                法的な問題となる可能性は低いと判断し、sekai.runを再開しました。
+              </p>
+              <p>
+                また、本サービスで使用している第三者提供データには、個人を特定できる情報
+                （たとえば本名、生年月日、電話番号など）は含まれておらず、そもそも当該情報を収集することも不可能であるため、
+                この点についても法的な問題となる可能性は低いと判断しています。
+              </p>
+              <p>
+                実際に、プロセカの公式運営側は sekai.run の存在をすでに把握しているものと認識しています。
+              </p>
+              <p>
+                類似のウェブサイトやサービスについても、その多くは Sekai Viewer のデータを基に運営されているか、
+                一部公開データを基に通常運営されているものと認識しています。
+              </p>
+              <p>
+                sekai.run と類似している、またはそれ以上に多様な機能を提供している非公式の私設サービスも多数存在していると認識していますが、
+                それらのサービスに関する法的問題については詳細に調査していません。
+              </p>
+            </section>
+          </div>
+        </section>
+      </section>
+
+      <!-- English -->
+      <section class="language-section" data-section="en" lang="en">
+        <header class="hero">
+          <h1>Notice of Service Termination</h1>
+
+          <div class="lead">
+            <p>
+              The core developer of sekai.run retired from the game in early 2026 and has no plans to continue operating the service.
+            </p>
+            <p>
+              As a result, the service has been terminated earlier than originally expected. Thank you for using sekai.run.
+            </p>
+          </div>
+
+          <p class="notice-box">
+            Decisions were made upon the personal circumstances and judgment of the core operator.<br>Thank you for your understanding.
+          </p>
+        </header>
+
+        <section class="section">
+          <h2>Alternative Services</h2>
+          <p>The following services may be used as alternatives to sekai.run.</p>
+
+          <ul class="link-list">
+            <li>
+              <div class="link-main">
+                <a class="link-title" href="https://jp.seka.ing/" target="_blank" rel="noopener noreferrer">jp.seka.ing</a>
+                <span class="link-meta">Recommended</span>
+              </div>
+            </li>
+            <li>
+              <div class="link-main">
+                <a class="link-title" href="https://pjsk.moe/realtime-ranking/?region=jp" target="_blank" rel="noopener noreferrer">moesekai</a>
+                <span class="link-meta">Supports CN/JP/EN</span>
+              </div>
+            </li>
+            <li>
+              <div class="link-main">
+                <a class="link-title" href="https://x.com/pj_sekai_border" target="_blank" rel="noopener noreferrer">border bot</a>
+                <span class="link-meta">
+                  <a href="https://discord.com/invite/SAwqkV7hDp" target="_blank" rel="noopener noreferrer">Discord Server</a>
+                </span>
+              </div>
+            </li>
+          </ul>
+        </section>
+
+        <section class="section">
+          <h2>Open Source</h2>
+          <p>Some of the code used for sekai.run has been made public.</p>
+
+          <ul class="code-list">
+            <li><a href="https://github.com/bemusicscript/sekai-frontend-public" target="_blank" rel="noopener noreferrer">sekai-frontend-public</a>: Frontend (Vanilla JS)</li>
+            <li><a href="https://github.com/bemusicscript/sekai-backend-public" target="_blank" rel="noopener noreferrer">sekai-backend-public</a>: Backend (Python, NodeJS, PHP etc.)</li>
+          </ul>
+        </section>
+
+        <section class="section">
+          <h2>Q&amp;A</h2>
+
+          <div class="qa-list">
+            <section class="qa-item">
+              <h3>How will mawashi / proxy play be handled in the future?</h3>
+              <p>
+                Regarding proxy play and related behavior, we believe that the measures taken by the official operation side
+                have effectively addressed the root cause. Therefore, there are no plans to update the list beyond what has already been published.
+              </p>
+              <p>However, the existing list will remain available at the link below.</p>
+              <ul>
+                <li>
+                  <a href="https://codeberg.org/lemonsour/snippets/wiki/mawashi" target="_blank" rel="noopener noreferrer">blocklist</a>
+                </li>
+              </ul>
+            </section>
+
+            <section class="qa-item">
+              <h3>Is sekai.run illegal?</h3>
+              <p>
+                First, sekai.run does not directly obtain, extract, or leak game data in any way.
+                The service has primarily operated based on public data provided by other websites and Discord bots.
+              </p>
+              <p>
+                The service was temporarily closed in 2025 due to concerns raised by people around us and the need to review potential legal issues.
+              </p>
+              <p>
+                After reviewing several potential legal risks, we determined that operating a free, non-commercial service for the purpose of supporting
+                the game community, based on factual data provided through third parties, was unlikely to raise legal issues. sekai.run was then reopened.
+              </p>
+              <p>
+                In addition, the third-party data used by this service does not contain personally identifiable information, such as real names,
+                dates of birth, or phone numbers. Since collecting such information is not possible in the first place, we also determined that
+                legal issues are unlikely in this regard.
+              </p>
+              <p>
+                We understand that the official operation side is already aware of the existence of sekai.run.
+              </p>
+              <p>
+                Similar websites and services also appear to be mostly operated based on Sekai Viewer data or other publicly available data.
+              </p>
+              <p>
+                There are many unofficial private services that have equivalent functionality to sekai.run or provide even more features.
+                However, we have not conducted a detailed legal review of those similar services.
+              </p>
+            </section>
+          </div>
+        </section>
+      </section>
+
+      <!-- Korean -->
+      <section class="language-section" data-section="ko" lang="ko">
+        <header class="hero">
+          <h1>서비스 종료 안내</h1>
+
+          <div class="lead">
+            <p>
+              서비스 제작자는 2026년 초 게임에서 은퇴하였으며, 앞으로도 본 서비스를 운영할 계획이 없습니다.
+            </p>
+            <p>
+              이에 따라 본 서비스를 조기에 종료하게 되었습니다. 그동안 서비스를 이용해 주셔서 감사합니다.
+            </p>
+          </div>
+
+          <p class="notice-box">
+            서비스 운영자의 개인적인 사정과 판단에 따른 결정인 만큼 양해 부탁드립니다.
+          </p>
+        </header>
+
+        <section class="section">
+          <h2>대체 가능한 서비스</h2>
+          <p>sekai.run을 대체할 수 있는 서비스는 다음과 같습니다.</p>
+
+          <ul class="link-list">
+            <li>
+              <div class="link-main">
+                <a class="link-title" href="https://jp.seka.ing/" target="_blank" rel="noopener noreferrer">jp.seka.ing</a>
+                <span class="link-meta">추천</span>
+              </div>
+            </li>
+            <li>
+              <div class="link-main">
+                <a class="link-title" href="https://pjsk.moe/realtime-ranking/?region=jp" target="_blank" rel="noopener noreferrer">moesekai</a>
+                <span class="link-meta">중국어·일본어·영어 지원</span>
+              </div>
+            </li>
+            <li>
+              <div class="link-main">
+                <a class="link-title" href="https://x.com/pj_sekai_border" target="_blank" rel="noopener noreferrer">보더 봇</a>
+                <span class="link-meta">
+                  <a href="https://discord.com/invite/SAwqkV7hDp" target="_blank" rel="noopener noreferrer">디스코드 서버</a>
+                </span>
+              </div>
+            </li>
+          </ul>
+        </section>
+
+        <section class="section">
+          <h2>오픈소스</h2>
+          <p>sekai.run에서 사용되는 코드의 일부를 공개했습니다.</p>
+
+          <ul class="code-list">
+            <li><a href="https://github.com/bemusicscript/sekai-frontend-public" target="_blank" rel="noopener noreferrer">sekai-frontend-public</a>: Frontend (Vanilla JS)</li>
+            <li><a href="https://github.com/bemusicscript/sekai-backend-public" target="_blank" rel="noopener noreferrer">sekai-backend-public</a>: Backend (Python, NodeJS, PHP etc.)</li>
+          </ul>
+        </section>
+
+        <section class="section">
+          <h2>Q&amp;A</h2>
+
+          <div class="qa-list">
+            <section class="qa-item">
+              <h3>대리 행위자에 대한 향후 처리는 어떻게 되나요?</h3>
+              <p>
+                대리 행위 등에 대해서는 공식 운영 측의 대책이 효과적으로 원인을 제거하였다고 판단하였기에,
+                현재까지 공개된 목록 외에는 추후 업데이트가 없을 예정입니다.
+              </p>
+              <p>다만 기존 목록은 다음 링크를 통해 계속 확인할 수 있습니다.</p>
+              <ul>
+                <li>
+                  <a href="https://codeberg.org/lemonsour/snippets/wiki/mawashi" target="_blank" rel="noopener noreferrer">블랙리스트</a>
+                </li>
+              </ul>
+            </section>
+
+            <section class="qa-item">
+              <h3>sekai.run은 불법인가요?</h3>
+              <p>
+                우선 sekai.run은 게임 데이터를 직접 취득·추출·유출하는 행위 등을 일절 하고 있지 않습니다.
+                주로 타 웹사이트 및 디스코드 봇 등을 통해 제공되는 공개 데이터를 기반으로 서비스를 운영해 왔습니다.
+              </p>
+              <p>
+                2025년에 서비스를 일시적으로 폐쇄했던 것은 주변의 우려가 있었고,
+                법적인 문제에 대해 검토할 시간이 필요했기 때문입니다.
+              </p>
+              <p>
+                이후 여러 법적 리스크에 대해 검토해 본 결과, 제3자를 통해 제공되는 사실 기반의 데이터를
+                게임 커뮤니티 활성화 목적으로 무보수로 운영하는 것에 대해서는 법적인 문제가 될 소지가 낮다고 판단하였고,
+                이에 따라 sekai.run을 재개하였습니다.
+              </p>
+              <p>
+                또한 sekai.run에서 사용하는 제3자 제공 데이터에는 개인을 특정할 수 있는 정보,
+                예를 들어 실명, 생년월일, 전화번호 등이 포함되어 있지 않으며,
+                애초에 해당 정보를 수집하는 것도 불가능하므로 이 부분에서도 법적인 문제가 될 소지는 낮다고 판단하였습니다.
+              </p>
+              <p>
+                실제로 공식 운영 측은 sekai.run의 존재를 이미 인지한 것으로 파악하고 있습니다.
+              </p>
+              <p>
+                유사 웹사이트나 봇들도 마찬가지로 대부분 Sekai Viewer의 데이터를 기반으로 운영되고 있거나,
+                일부 공개된 데이터를 기반으로 정상적으로 운영되고 있는 것으로 파악됩니다.
+              </p>
+              <p>
+                sekai.run과 유사하거나 이보다 더 다양한 기능을 제공하는 비공식 사설 서비스도 다수 존재하는 것으로 알고 있으나,
+                관련 서비스들의 법적 문제에 대해서는 상세히 조사하지 않았습니다.
+              </p>
+            </section>
+          </div>
+        </section>
+      </section>
+
+      <p class="footer-note">
+        © sekai.run
+      </p>
+    </article>
+  </main>
+
+  <script>
+    const buttons = document.querySelectorAll("[data-lang]");
+    const sections = document.querySelectorAll("[data-section]");
+    const storageKey = "sekai-run-notice-language";
+
+    function setLanguage(lang) {
+      buttons.forEach((button) => {
+        const isActive = button.dataset.lang === lang;
+        button.classList.toggle("active", isActive);
+        button.setAttribute("aria-pressed", String(isActive));
+      });
+
+      sections.forEach((section) => {
+        section.classList.toggle("active", section.dataset.section === lang);
+      });
+
+      document.documentElement.lang = lang;
+
+      try {
+        localStorage.setItem(storageKey, lang);
+      } catch (_) {
+        // localStorage may be unavailable in some environments.
+      }
+    }
+
+    buttons.forEach((button) => {
+      button.addEventListener("click", () => {
+        setLanguage(button.dataset.lang);
+      });
+    });
+
+    let savedLang = null;
+
+    try {
+      savedLang = localStorage.getItem(storageKey);
+    } catch (_) {
+      savedLang = null;
+    }
+
+    const browserLang = navigator.language || navigator.userLanguage || "";
+    const initialLang =
+      savedLang ||
+      (browserLang.startsWith("ja")
+        ? "ja"
+        : browserLang.startsWith("ko")
+          ? "ko"
+          : "en");
+
+    setLanguage(initialLang);
+  </script>
+</body>
+</html>
